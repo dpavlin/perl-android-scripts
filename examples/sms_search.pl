@@ -34,12 +34,12 @@ my $messages = $droid->smsGetMessages(0, 'inbox', ['body', 'thread_id']);
 
 croak "Unable to retreive SMS messages" if defined $messages->{error};
 
-my $search_string = $droid->getInput(INPUT_TITLE, INPUT_MESSAGE);
+my $search_string = $droid->dialogGetInput(INPUT_TITLE, INPUT_MESSAGE);
 
 if ( defined $search_string->{error} ) {
 
     $droid->makeToast('No search string entered; try again...');
-    $search_string = $droid->getInput(INPUT_TITLE, INPUT_MESSAGE);
+    $search_string = $droid->dialogGetInput(INPUT_TITLE, INPUT_MESSAGE);
 
     exit if defined $search_string->{error};
 }
