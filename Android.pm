@@ -56,6 +56,7 @@ sub server {
   # getprotobyname() is still a fatally unimplemented stub in Android 2.0.1.
   my $proto = eval { getprotobyname('tcp') } || 6;
   my $server = IO::Socket::INET->new(Proto     => 'tcp',
+                                   LocalAddr => $ENV{AP_HOST} || 'localhost',
                                      LocalPort => $Opt{port},
                                      Listen    => SOMAXCONN,
                                      Reuse     => 1);
@@ -81,7 +82,7 @@ sub new {
         print STDERR "$0: client: new() expected no arguments, got @_\n";
     }
     my $fh = IO::Socket::INET->new(Proto    => 'tcp',
-                                   PeerAddr => 'localhost',
+                                   PeerAddr => $ENV{AP_HOST} || 'localhost',
                                    PeerPort => $Opt{port})
         or die "$0: Cannot connect to server port $Opt{port} on localhost\n";
     $fh->autoflush(1);
