@@ -77,12 +77,12 @@ if ( ! defined $contact->{result} ) {
 $contact = $contact->{result};
 
 # Enter a message for the chosen contact
-my $message_to_contact = $droid->getInput('Message', 'Message to selected contact');
+my $message_to_contact = $droid->dialogGetInput('Message', 'Message to selected contact');
 
 if ( defined $message_to_contact->{error} || ! defined $message_to_contact->{result} ) {
 
     $droid->makeToast('No message entered. Please enter a message.');
-    $message_to_contact = $droid->getInput('Message', 'Message to be sent to contact upon arrival');
+    $message_to_contact = $droid->dialogGetInput('Message', 'Message to be sent to contact upon arrival');
 
     exit if defined $message_to_contact->{error} || ! defined $message_to_contact->{result};
 }
@@ -133,12 +133,12 @@ else {
 push @gps_keys, 'map_link';
 
 # Enter destination
-my $destination = $droid->getInput('Destination', 'Please enter your destination');
+my $destination = $droid->dialogGetInput('Destination', 'Please enter your destination');
 
 if ( defined $destination->{error} || ! defined $destination->{result} ) {
 
     $droid->makeToast('No destination entered. Please enter a destination.');
-    $destination = $droid->getInput('Destination', 'Please enter your destination');
+    $destination = $droid->dialogGetInput('Destination', 'Please enter your destination');
 
     exit if defined $destination->{error} || ! defined $destination->{result};
 }

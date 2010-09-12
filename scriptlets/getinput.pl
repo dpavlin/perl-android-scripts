@@ -6,6 +6,6 @@ require "/sdcard/ase/scripts/MyTools.pl";
 use Android;
 my $d = Android->new();
 
-dd($d->getInput("title", "text"));
+dd($d->dialogGetInput("title", "text"));
 
 # The 'result' will contain the string the user typed in

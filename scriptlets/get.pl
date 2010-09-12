@@ -11,7 +11,7 @@ my $d = Android->new();
 
 my $site  = 'http://perl.org/';
 
-dd($d->getInput("URL", "Default: $site"));
+dd($d->dialogGetInput("URL", "Default: $site"));
 say(get($site));
 
 
