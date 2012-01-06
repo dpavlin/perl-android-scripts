@@ -8,10 +8,13 @@
 #
 # and you will get AP_HOST and AP_PORT in enviroment
 
-adb shell \
-am start -a com.googlecode.android_scripting.action.LAUNCH_SERVER -n com.googlecode.android_scripting/.activity.ScriptingLayerServiceLauncher --ez com.googlecode.android_scripting.extra.USE_PUBLIC_IP true
+public=""
+test ! -z && public="--ez com.googlecode.android_scripting.extra.USE_PUBLIC_IP true"
 
-sleep 1
+adb shell \
+am start -a com.googlecode.android_scripting.action.LAUNCH_SERVER -n com.googlecode.android_scripting/.activity.ScriptingLayerServiceLauncher $public
+
+sleep 3
 
 server=`adb logcat -d | grep sl4a.JsonRpcServer | grep "Bound to" | sed 's/^.*Bound to //' | tr -d '\r' | tail -1`
 
